@@ -1,0 +1,28 @@
+Keras has the method fit_generator() in its models. It accepts a python generator or a keras Sequence as input. 
+You can create a simple generator like this:
+fileList = listOfFiles     
+
+def imageLoader(files, batch_size):
+
+    L = len(files)
+
+    #this line is just to make the generator infinite, keras needs that    
+    while True:
+
+        batch_start = 0
+        batch_end = batch_size
+
+        while batch_start < L:
+            limit = min(batch_end, L)
+            X = someMethodToLoadImages(files[batch_start:limit])
+            Y = someMethodToLoadTargets(files[batch_start:limit])
+
+            yield (X,Y) #a tuple with two numpy arrays with batch_size samples     
+
+            batch_start += batch_size   
+            batch_end += batch_size
+And fit like this:
+model.fit_generator(imageLoader(fileList,batch_size),steps_per_epoch=..., epochs=..., ...)
+Normally, you pass to steps_per_epoch the number of batches you will take from the generator.
+You can also implement your own Keras Sequence. It's a little more work, but they recommend using this if you're going to make multi-thread processing. 
+
