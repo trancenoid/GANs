@@ -1,4 +1,4 @@
-Keras has the method fit_generator() in its models. It accepts a python generator or a keras Sequence as input. 
+Keras has the method fit_generator() in its models. It accepts a python generator or a keras sequence as input. 
 You can create a simple generator like this:
 fileList = listOfFiles     
 
