@@ -1,2 +1,2 @@
 # GANs
-Repo for GAN related resources
+Repository for my Generative Adversarial Models related projects and some resources.
